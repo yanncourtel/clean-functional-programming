@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LordOfTheRings.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa004c256455ac84234feab2332a78ecc737e4f8")]
 [assembly: System.Reflection.AssemblyProductAttribute("LordOfTheRings.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LordOfTheRings.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

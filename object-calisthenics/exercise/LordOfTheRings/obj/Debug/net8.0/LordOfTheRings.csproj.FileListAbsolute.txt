@@ -1,0 +1,13 @@
+C:\git\clean-functional-programming\object-calisthenics\exercise\LordOfTheRings\bin\Debug\net8.0\LordOfTheRings.deps.json
+C:\git\clean-functional-programming\object-calisthenics\exercise\LordOfTheRings\bin\Debug\net8.0\LordOfTheRings.dll
+C:\git\clean-functional-programming\object-calisthenics\exercise\LordOfTheRings\bin\Debug\net8.0\LordOfTheRings.pdb
+C:\git\clean-functional-programming\object-calisthenics\exercise\LordOfTheRings\obj\Debug\net8.0\LordOfTheRings.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\clean-functional-programming\object-calisthenics\exercise\LordOfTheRings\obj\Debug\net8.0\LordOfTheRings.AssemblyInfoInputs.cache
+C:\git\clean-functional-programming\object-calisthenics\exercise\LordOfTheRings\obj\Debug\net8.0\LordOfTheRings.AssemblyInfo.cs
+C:\git\clean-functional-programming\object-calisthenics\exercise\LordOfTheRings\obj\Debug\net8.0\LordOfTheRings.csproj.CoreCompileInputs.cache
+C:\git\clean-functional-programming\object-calisthenics\exercise\LordOfTheRings\obj\Debug\net8.0\LordOfTheRings.sourcelink.json
+C:\git\clean-functional-programming\object-calisthenics\exercise\LordOfTheRings\obj\Debug\net8.0\LordOfTheRings.dll
+C:\git\clean-functional-programming\object-calisthenics\exercise\LordOfTheRings\obj\Debug\net8.0\refint\LordOfTheRings.dll
+C:\git\clean-functional-programming\object-calisthenics\exercise\LordOfTheRings\obj\Debug\net8.0\LordOfTheRings.pdb
+C:\git\clean-functional-programming\object-calisthenics\exercise\LordOfTheRings\obj\Debug\net8.0\ref\LordOfTheRings.dll
+C:\git\clean-functional-programming\object-calisthenics\exercise\LordOfTheRings\obj\Debug\net8.0\LordOfTheRings.csproj.AssemblyReference.cache

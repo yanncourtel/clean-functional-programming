@@ -2,154 +2,81 @@ namespace LordOfTheRings
 {
     public class FellowshipOfTheRingService
     {
-        private List<Character> members = new List<Character>();
+        private readonly Fellowship fellowship = new();
 
         public void AddMember(Character character)
         {
-            if (character == null)
+            if (fellowship.Members.Any(member => member.Name == character.Name))
             {
-                throw new ArgumentNullException(nameof(character), "Character cannot be null.");
+                throw new InvalidOperationException(
+                    "A character with the same name already exists in the fellowship.Members.");
             }
-            else if (string.IsNullOrWhiteSpace(character.N))
-            {
-                throw new ArgumentException("Character must have a name.");
-            }
-            else if (string.IsNullOrWhiteSpace(character.R))
-            {
-                throw new ArgumentException("Character must have a race.");
-            }
-            else if (character.W == null)
-            {
-                throw new ArgumentException("Character must have a weapon.");
-            }
-            else if (string.IsNullOrWhiteSpace(character.W.Name))
-            {
-                throw new ArgumentException("A weapon must have a name.");
-            }
-            else if (character.W.Damage <= 0)
-            {
-                throw new ArgumentException("A weapon must have a damage level.");
-            }
-            else
-            {
-                bool exists = false;
-                foreach (var member in members)
-                {
-                    if (member.N == character.N)
-                    {
-                        exists = true;
-                        break;
-                    }
-                }
 
-                if (exists)
-                {
-                    throw new InvalidOperationException(
-                        "A character with the same name already exists in the fellowship.");
-                }
-                else
-                {
-                    members.Add(character);
-                }
-            }
-        }
-
-        public void UpdateCharacterWeapon(string name, string newWeapon, int damage)
-        {
-            foreach (var character in members)
-            {
-                if (character.N == name)
-                {
-                    character.W = new Weapon
-                    {
-                        Name = newWeapon,
-                        Damage = damage
-                    };
-                    break;
-                }
-            }
+            fellowship.AddMember(character);
         }
 
         public void RemoveMember(string name)
         {
-            Character characterToRemove = null;
-            foreach (var character in members)
-            {
-                if (character.N == name)
-                {
-                    characterToRemove = character;
-                    break;
-                }
-            }
+            var characterToRemove = 
+                fellowship.Members
+                    .FirstOrDefault(character => character.Name == name);
 
             if (characterToRemove == null)
             {
-                throw new InvalidOperationException($"No character with the name '{name}' exists in the fellowship.");
+                throw new InvalidOperationException($"No character with the name '{name}' exists in the fellowship.Members.");
             }
-            else
-            {
-                members.Remove(characterToRemove);
-            }
+
+            fellowship.Members.Remove(characterToRemove);
         }
 
         public void MoveMembersToRegion(List<string> memberNames, string region)
         {
-            foreach (var name in memberNames)
+            memberNames
+                .SelectMany(name => fellowship.Members.Where(character => character.Name == name))
+                .ToList()
+                .ForEach(character => MoveMemberToRegion(region, character));
+        }
+
+        private void MoveMemberToRegion(string region, Character character)
+        {
+            if (character.Region == "Mordor" && region != "Mordor")
             {
-                foreach (var character in members)
-                {
-                    if (character.N == name)
-                    {
-                        if (character.C == "Mordor" && region != "Mordor")
-                        {
-                            throw new InvalidOperationException(
-                                $"Cannot move {character.N} from Mordor to {region}. Reason: There is no coming back from Mordor.");
-                        }
-                        else
-                        {
-                            character.C = region;
-                            if (region != "Mordor") Console.WriteLine($"{character.N} moved to {region}.");
-                            else Console.WriteLine($"{character.N} moved to {region} 💀.");
-                        }
-                    }
-                }
+                throw new InvalidOperationException(
+                    $"Cannot move {character.Name} from Mordor to {region}. Reason: There is no coming back from Mordor.");
             }
+
+            character.Region = region;
+            
+            Console.WriteLine(region != "Mordor"
+                ? $"{character.Name} moved to {region}."
+                : $"{character.Name} moved to {region} 💀.");
         }
 
         public void PrintMembersInRegion(string region)
         {
-            List<Character> charactersInRegion = new List<Character>();
-            foreach (var character in members)
-            {
-                if (character.C == region)
-                {
-                    charactersInRegion.Add(character);
-                }
-            }
+            var charactersInRegion = fellowship.Members
+                    .Where(character => character.Region == region)
+                    .ToList();
 
-            if (charactersInRegion.Count > 0)
-            {
-                Console.WriteLine($"Members in {region}:");
-                foreach (var character in charactersInRegion)
-                {
-                    Console.WriteLine($"{character.N} ({character.R}) with {character.W.Name}");
-                }
-            }
-            else if (charactersInRegion.Count == 0)
+            if (charactersInRegion.Count == 0)
             {
                 Console.WriteLine($"No members in {region}");
+                return;
+            }
+
+            Console.WriteLine($"Members in {region}:");
+            foreach (var character in charactersInRegion)
+            {
+                Console.WriteLine($"{character.Name} ({character.Race}) " +
+                                  $"with {character.Weapon.Name}");
             }
         }
 
         public override string ToString()
         {
-            var result = "Fellowship of the Ring Members:\n";
-            foreach (var member in members)
-            {
-                result += $"{member.N} ({member.R}) with {member.W.Name} in {member.C}" + "\n";
-            }
-
-            return result;
+            return fellowship.Members.Aggregate(
+                "Fellowship of the Ring Members:\n", (current, member) => 
+                    current + ($"{member.Name} ({member.Race}) with {member.Weapon.Name} in {member.Region}" + "\n"));
         }
     }
 }

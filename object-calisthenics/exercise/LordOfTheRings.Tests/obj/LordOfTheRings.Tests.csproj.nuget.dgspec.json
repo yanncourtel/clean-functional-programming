@@ -106,6 +106,18 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "ApprovalTests": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[6.12.0, )"
+            },
+            "FluentAssertions.LanguageExt": {
+              "target": "Package",
+              "version": "[0.5.0, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.6.0, )"
@@ -182,6 +194,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "LanguageExt.Core": {
+              "target": "Package",
+              "version": "[4.4.9, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
